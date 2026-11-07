@@ -1,0 +1,10 @@
+SmolLM-135M SystemVerilog inference project
+
+The model checkpoint, config, tokenizer JSON, and derived tokenizer/tensor tables
+originate from HuggingFaceTB/SmolLM-135M (Apache License 2.0):
+https://huggingface.co/HuggingFaceTB/SmolLM-135M
+The checkpoint itself is not stored in this repository.
+
+The dashboard bundles Inter and Space Grotesk from the Google Fonts project.
+Each font's SIL Open Font License is included beside its font file in
+ dashboard/public/fonts/.

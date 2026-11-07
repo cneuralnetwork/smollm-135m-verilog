@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f5f7">
+  <title>Prompt Studio · SmolLM-135M</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg>
+        </div>
+        <span>Prompt Studio</span>
+      </div>
+      <nav aria-label="Main navigation">
+        <a href="#workspace" data-view-link="workspace" class="active" aria-current="page">Workspace</a>
+        <a href="#history" data-view-link="history">History</a>
+        <a href="#settings" data-view-link="settings">Settings</a>
+      </nav>
+    </header>
+
+    <main id="workspace-view" class="workspace view">
+      <section class="panel prompt-panel" aria-labelledby="prompt-heading">
+        <div class="panel-heading">
+          <h2 id="prompt-heading">Prompt</h2>
+          <span id="char-count" class="muted">0 characters</span>
+        </div>
+        <div class="prompt-body">
+          <label for="prompt">What should it do?</label>
+          <textarea id="prompt" placeholder="Describe the task, paste text to transform, or ask a question..." spellcheck="false"></textarea>
+        </div>
+        <div class="panel-footer">
+          <button type="button" id="clear-button" class="button button-secondary">Clear</button>
+          <button type="button" id="run-button" class="button button-primary" disabled>
+            <svg id="run-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg>
+            <span id="run-label">Run</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="panel output-panel" aria-labelledby="output-heading">
+        <div class="panel-heading">
+          <h2 id="output-heading">Output</h2>
+          <span class="status-pill" id="status-pill"><span class="status-dot"></span><span id="status-text">Ready</span></span>
+        </div>
+        <div class="progress-track" aria-hidden="true"><div id="progress-fill" class="progress-fill"></div></div>
+        <div class="output-body">
+          <div id="empty-state" class="empty-state">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8a909a" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/><rect x="2" y="2" width="20" height="20" rx="4" opacity=".35"/></svg>
+            <p class="empty-title">Nothing here yet</p>
+            <p class="empty-description">Write a prompt on the left and press Run. The result shows up here.</p>
+          </div>
+          <div id="result-state" class="result-state" hidden>
+            <div id="run-detail" class="run-detail" aria-live="polite"></div>
+            <pre id="output-text" aria-live="polite"></pre>
+            <div class="result-actions"><button id="copy-button" class="button button-secondary" type="button" hidden>Copy output</button></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <main id="history-view" class="subpage view" hidden>
+      <section class="panel full-panel">
+        <div class="panel-heading"><h2>History</h2><button id="clear-history" class="text-button" type="button">Clear history</button></div>
+        <div id="history-list" class="list-body"></div>
+      </section>
+    </main>
+
+    <main id="settings-view" class="subpage view" hidden>
+      <section class="panel full-panel">
+        <div class="panel-heading"><h2>Settings</h2><span class="muted">Local inference</span></div>
+        <div class="settings-body">
+          <div class="setting-row"><div><label for="max-new">Max new tokens</label><p>How many tokens the model can generate in one run.</p></div><input id="max-new" type="number" min="1" max="64" value="4"></div>
+          <div class="setting-row"><div><label for="bos">Add BOS token</label><p>Use the model's beginning-of-sequence token before the prompt.</p></div><input id="bos" type="checkbox"></div>
+          <div class="setting-row"><div><strong>Model</strong><p>SmolLM-135M · 30 layers · 2,048-token context</p></div><span id="model-state" class="setting-value">Checking…</span></div>
+          <div class="setting-note">The Verilog simulator runs on this Mac. Each prompt token can take around 20 seconds to process; generated tokens take similar time.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

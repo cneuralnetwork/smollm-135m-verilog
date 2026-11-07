@@ -1,0 +1,14 @@
+# The 538 MB checkpoint must be downloaded locally; GitHub rejects files over 100 MB.
+data/model.safetensors
+data/*.safetensors
+
+# Generated simulator build output
+obj_dir/
+*.vcd
+*.fst
+core
+core.*
+
+# Local editor / OS files
+.DS_Store
+.env
